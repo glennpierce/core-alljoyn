@@ -1,0 +1,38 @@
+__IMPORTS__
+
+__DEFINES__
+
+__VARIABLES__
+
+__ENUMS__
+
+__TYPEDEFS__
+
+if sys.platform == 'win32':
+    CallbackType = C.WINFUNCTYPE
+else:
+    CallbackType = C.CFUNCTYPE
+    
+__FUNCTION_POINTER_TYPES__
+
+__STRUCTS__
+
+class __NAME__(AllJoynObject):
+    
+    __metaclass__ = AllJoynMeta
+    
+    _cmethods = __METHODS__
+    
+    def __init__(self):
+        pass
+        
+    def __del__(self):
+        #self.__NAME__Destroy(self.handle)
+        pass
+
+    # Wrapper Methods
+
+    __WRAPPERS__
+
+
+sys.modules[__name__] = __NAME__()  # See https://mail.python.org/pipermail/python-ideas/2012-May/014969.html
