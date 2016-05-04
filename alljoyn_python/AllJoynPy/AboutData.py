@@ -67,11 +67,11 @@ class AboutData(AllJoynObject):
                                            ((u'alljoyn_aboutdata', AboutDataHandle),
                                                (u'char **', POINTER(C.c_char_p)))),
 
-                 u'GetAPPID': (u'alljoyn_aboutdata_getappid',
+                 u'GetAppId': (u'alljoyn_aboutdata_getappid',
                                (u'QStatus', C.c_uint),
                                ((u'alljoyn_aboutdata', AboutDataHandle),
-                                   (u'int **', POINTER(POINTER(C.c_int))),
-                                   (u'int *', POINTER(C.c_int)))),
+                                   (u'uint8 **', POINTER(POINTER(C.c_uint8))),
+                                   (u'size_t*', POINTER(C.c_size_t)))),
 
                  u'GetAppName': (u'alljoyn_aboutdata_getappname',
                                  (u'QStatus', C.c_uint),
@@ -298,8 +298,14 @@ class AboutData(AllJoynObject):
     def SetAppIdFromString(self, appId):
         return self._SetAppIdFromString(self.handle, appId)  # const char *
 
-    def GetAppId(self, appId, num):
-        return self._GetAppId(self.handle, appId, num)  # int **,int *
+    def GetAppId(self):
+        l = []
+        p = C.pointer(C.c_uint8())
+        size = C.c_size_t()
+        self._GetAppId(self.handle, C.byref(p), C.byref(size))
+        for i in range(size.value):
+            l.append(p[i])
+        return l
 
     def SetDefaultLanguage(self, defaultLanguage):
         return self._SetDefaultLanguage(self.handle, defaultLanguage)  # const char *
