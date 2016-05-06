@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <alljoyn/Init.h>
+#include <alljoyn_c/Init.h>
 
 static PyObject * python_alljoyn_routerinit(PyObject * self, PyObject * args)
 {
@@ -24,8 +24,8 @@ static PyMethodDef AlljoynRouterMethods[] = {
 };
 
 
-DL_EXPORT(void) initAlljoynRouter(void)
+DL_EXPORT(void) initAllJoynPythonRouter(void)
 {
-  Py_InitModule("AlljoynRouter", AlljoynRouterMethods);
+  Py_InitModule("AllJoynPythonRouter", AlljoynRouterMethods);
 }
 

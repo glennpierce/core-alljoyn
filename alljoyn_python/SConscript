@@ -20,7 +20,7 @@ Import('env')
 
 # Dependent Projects
 if not env.has_key('_ALLJOYNCORE_'):
-    env.SConscript('../alljoyn_core/SConscript')
+    env.SConscript('../alljoyn_c/SConscript')
 
 # Indicate that this SConscript file has been loaded already
 env['_ALLJOYN_PYTHON_'] = True
@@ -30,7 +30,7 @@ pythonenv = env.Clone()
 #Help(vars.GenerateHelpText(pythonenv))
 
 env = Environment(SWIGFLAGS=['-python'],
-                  CPPPATH=[distutils.sysconfig.get_python_inc()],
+                  CPPPATH=[distutils.sysconfig.get_python_inc(), '../alljoyn_c/inc', '../common/inc'],
                   SHLIBPREFIX="")
 
 lib = env.SharedLibrary('AllJoynPy/AllJoynPythonRouter.so', ['AllJoynPy/Router.c'], LIBS=['alljoyn', 'ajrouter'], CPPDEFINES={"QCC_OS_GROUP_POSIX":1})
