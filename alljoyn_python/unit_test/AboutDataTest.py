@@ -1411,41 +1411,26 @@ class TestAboutDataMethods(unittest.TestCase):
         appId = aboutData.GetAppId()
         self.assertEqual(appId, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 12])
 
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # ASSERT_EQ(16u, num);
-        # for (size_t i = 0; i < num; i++) {
-        #     EXPECT_EQ(originalAppId[i], appId[i]) << i
-        #                                           << ": " << originalAppId[i]
-        #                                           << " = " << appId[i];
-        # }
+        language = aboutData.GetDefaultLanguage()
+        self.assertEqual("en", language)
 
-        # char* defaultLanguage;
-        # status = alljoyn_aboutdata_getdefaultlanguage(aboutData, &defaultLanguage);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("en", defaultLanguage);
+        deviceName = aboutData.GetDeviceName()
+        self.assertEqual("My Device Name", deviceName)
 
-        # char* deviceName;
-        # status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "en");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("My Device Name", deviceName);
+        deviceName = aboutData.GetDeviceName(language="es")
+        self.assertEqual("Nombre de mi dispositivo", deviceName)
 
-        # status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "es");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Nombre de mi dispositivo", deviceName);
+        deviceId = aboutData.GetDeviceId()
+        self.assertEqual("baddeviceid", deviceId)
 
-        # char* deviceId;
-        # status = alljoyn_aboutdata_getdeviceid(aboutData, &deviceId);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("baddeviceid", deviceId);
+        appName = aboutData.GetAppName()
+        self.assertEqual("My Application Name", appName)
 
-        # char* appName;
-        # status = alljoyn_aboutdata_getappname(aboutData, &appName, "en");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("My Application Name", appName);
+        appName = aboutData.GetAppName(language="es")
+        self.assertEqual("Mi Nombre de la aplicación", appName)
 
-        # status = alljoyn_aboutdata_getappname(aboutData, &appName, "es");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Mi Nombre de la aplicación", appName);
+      
+
 
         # char* manufacturer;
         # status = alljoyn_aboutdata_getmanufacturer(aboutData, &manufacturer, "en");

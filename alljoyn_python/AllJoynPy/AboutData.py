@@ -336,7 +336,7 @@ class AboutData(AllJoynObject):
 
     def GetAppName(self, language="en"):
         app_name = C.c_char_p()
-        self._GetAppName(self.handle, C.byref(app_name))  # char **
+        self._GetAppName(self.handle, C.byref(app_name), language)  # char **
         return app_name.value
 
     def SetManufacturer(self, manufacturer, language):
