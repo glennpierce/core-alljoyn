@@ -19,7 +19,7 @@ import ctypes as C
 from ctypes.util import find_library
 import sys
 from enum import Enum, unique
-import AlljoynRouter
+import AllJoynPythonRouter
 
 
 class Handle(C.c_void_p):
@@ -593,10 +593,10 @@ class AllJoyn(object):
         return BusAttachment
 
     def RouterInit(self):
-        AlljoynRouter.RouterInit()
+        AllJoynPythonRouter.RouterInit()
 
     def RouterShutdown(self):
-        AlljoynRouter.RouterShutdown()
+        AllJoynPythonRouter.RouterShutdown()
 
     def __init__(self):
         Init._Init()
