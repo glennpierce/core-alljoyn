@@ -17,23 +17,6 @@
 
 
 
-# TEST(AboutDataTest, constants) {
-#     EXPECT_STREQ("AppId", AboutData::APP_ID);
-#     EXPECT_STREQ("DefaultLanguage", AboutData::DEFAULT_LANGUAGE);
-#     EXPECT_STREQ("DeviceName", AboutData::DEVICE_NAME);
-#     EXPECT_STREQ("DeviceId", AboutData::DEVICE_ID);
-#     EXPECT_STREQ("AppName", AboutData::APP_NAME);
-#     EXPECT_STREQ("Manufacturer", AboutData::MANUFACTURER);
-#     EXPECT_STREQ("ModelNumber", AboutData::MODEL_NUMBER);
-#     EXPECT_STREQ("SupportedLanguages", AboutData::SUPPORTED_LANGUAGES);
-#     EXPECT_STREQ("Description", AboutData::DESCRIPTION);
-#     EXPECT_STREQ("DateOfManufacture", AboutData::DATE_OF_MANUFACTURE);
-#     EXPECT_STREQ("SoftwareVersion", AboutData::SOFTWARE_VERSION);
-#     EXPECT_STREQ("AJSoftwareVersion", AboutData::AJ_SOFTWARE_VERSION);
-#     EXPECT_STREQ("HardwareVersion", AboutData::HARDWARE_VERSION);
-#     EXPECT_STREQ("SupportUrl", AboutData::SUPPORT_URL);
-# }
-
 # TEST(AboutDataTest, VerifyFieldValues) {
 #     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
 
@@ -1429,73 +1412,40 @@ class TestAboutDataMethods(unittest.TestCase):
         appName = aboutData.GetAppName(language="es")
         self.assertEqual("Mi Nombre de la aplicación", appName)
 
-      
+        manufacturer = aboutData.GetManufacturer()
+        self.assertEqual("Company", manufacturer)
 
+        manufacturer = aboutData.GetManufacturer(language="es")
+        self.assertEqual("Empresa", manufacturer)
 
-        # char* manufacturer;
-        # status = alljoyn_aboutdata_getmanufacturer(aboutData, &manufacturer, "en");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Company", manufacturer);
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
 
-        # status = alljoyn_aboutdata_getmanufacturer(aboutData, &manufacturer, "es");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Empresa", manufacturer);
+        description = aboutData.GetDescription()
+        self.assertEqual("A detailed description provided by the application.", description)
 
-        # size_t numLanguages =
-        #     alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-        # const char** languages = new const char*[numLanguages];
+        description = aboutData.GetDescription(language="es")
+        self.assertEqual("Una descripción detallada proporcionada por la aplicación.", description)
 
-        # size_t numRetLang =
-        #     alljoyn_aboutdata_getsupportedlanguages(aboutData,
-        #                                             languages,
-        #                                             numLanguages);
-        # EXPECT_EQ(numLanguages, numRetLang);
-        # EXPECT_EQ(2u, numLanguages);
-        # EXPECT_STREQ("en", languages[0]);
-        # EXPECT_STREQ("es", languages[1]);
-        # delete [] languages;
-        # languages = NULL;
+        model = aboutData.GetModelNumber()
+        self.assertEqual("Wxfy388i", model)
 
-        # char* description;
-        # status = alljoyn_aboutdata_getdescription(aboutData, &description, "en");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("A detailed description provided by the application.", description);
+        date_of_manufacture = aboutData.GetDateOfManufacture()
+        self.assertEqual("2014-01-08", date_of_manufacture)
 
-        # status = alljoyn_aboutdata_getdescription(aboutData, &description, "es");
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Una descripción detallada proporcionada por la aplicación.", description);
+        software_version = aboutData.GetSoftwareVersion()
+        self.assertEqual("1.0.0", software_version)
 
-        # char* modelNumber;
-        # status = alljoyn_aboutdata_getmodelnumber(aboutData, &modelNumber);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("Wxfy388i", modelNumber);
+        aj_software_version = aboutData.GetAJSoftwareVersion()
+        print "AJ Software Version", aj_software_version
 
-        # char* dateOfManufacture;
-        # status = alljoyn_aboutdata_getdateofmanufacture(aboutData, &dateOfManufacture);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("2014-01-08", dateOfManufacture);
+        hardware_version = aboutData.GetHardwareVersion()
+        self.assertEqual("1.0.0", hardware_version)
 
-        # char* softwareVersion;
-        # status = alljoyn_aboutdata_getsoftwareversion(aboutData, &softwareVersion);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("1.0.0", softwareVersion);
+        support_url = aboutData.GetSupportURL()
+        self.assertEqual("www.example.com", support_url)
 
-        # char* ajSoftwareVersion;
-        # alljoyn_aboutdata_getajsoftwareversion(aboutData, &ajSoftwareVersion);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ(ajn::GetVersion(), ajSoftwareVersion);
-
-        # char* hardwareVersion;
-        # status = alljoyn_aboutdata_gethardwareversion(aboutData, &hardwareVersion);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("1.0.0", hardwareVersion);
-
-        # char* supportUrl;
-        # status = alljoyn_aboutdata_getsupporturl(aboutData, &supportUrl);
-        # EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-        # EXPECT_STREQ("www.example.com", supportUrl);
-
-        # alljoyn_aboutdata_destroy(aboutData);
+        del aboutData
 
 
 if __name__ == '__main__':

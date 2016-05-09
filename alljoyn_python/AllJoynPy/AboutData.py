@@ -344,7 +344,7 @@ class AboutData(AllJoynObject):
 
     def GetManufacturer(self, language="en"):
         manufacturer = C.c_char_p()
-        self._GetManufacturer(self.handle, C.byref(manufacturer))  # char **
+        self._GetManufacturer(self.handle, C.byref(manufacturer), language)  # char **
         return manufacturer.value
 
     def SetModelNumber(self, modelNumber):
@@ -370,7 +370,7 @@ class AboutData(AllJoynObject):
 
     def GetDescription(self, language="en"):
         description = C.c_char_p()
-        self._GetDescription(self.handle, C.byref(description))  # char **
+        self._GetDescription(self.handle, C.byref(description), language)  # char **
         return description.value
 
     def SetDateOfManufacture(self, date_of_manufacture):
@@ -384,12 +384,12 @@ class AboutData(AllJoynObject):
     def SetSoftwareVersion(self, software_version):
         return self._SetSoftwareVersion(self.handle, software_version)  # const char *
 
-    def GetSoftwareVersion(self, software_version):
+    def GetSoftwareVersion(self):
         software_version = C.c_char_p()
         self._GetSoftwareVersion(self.handle, C.byref(software_version))  # char **
         return software_version.value
 
-    def GetAJSoftwareVersion(self, aj_software_version):
+    def GetAJSoftwareVersion(self):
         aj_software_version = C.c_char_p()
         self._GetAJSoftwareVersion(self.handle, C.byref(aj_software_version))  # char **
         return aj_software_version.value
@@ -397,7 +397,7 @@ class AboutData(AllJoynObject):
     def SetHardwareVersion(self, hardware_version):
         return self._SetHardwareVersion(self.handle, hardware_version)  # const char *
 
-    def GetHardwareVersion(self, hardware_version):
+    def GetHardwareVersion(self):
         hardware_version = C.c_char_p()
         self._GetHardwareVersion(self.handle, C.byref(hardware_version))  # char **
         return hardware_version.value
@@ -405,7 +405,7 @@ class AboutData(AllJoynObject):
     def SetSupportURL(self, support_url):
         return self._SetSupportURL(self.handle, support_url)  # const char *
 
-    def GetSupportURL(self, support_url):
+    def GetSupportURL(self):
         support_url = C.c_char_p()
         self._GetSupportURL(self.handle, C.byref(support_url))  # char **
         return support_url.value
