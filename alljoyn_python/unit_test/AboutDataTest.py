@@ -16,125 +16,6 @@
 #    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-
-# TEST(AboutDataTest, VerifyFieldValues) {
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::APP_ID));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::APP_ID));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::APP_ID));
-# EXPECT_STREQ("ay", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::APP_ID));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::DEFAULT_LANGUAGE));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::DEFAULT_LANGUAGE));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::DEFAULT_LANGUAGE));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::DEFAULT_LANGUAGE));
-
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::DEVICE_NAME));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::DEVICE_NAME));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::DEVICE_NAME));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::DEVICE_NAME));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::DEVICE_ID));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::DEVICE_ID));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::DEVICE_ID));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::DEVICE_ID));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::APP_NAME));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::APP_NAME));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::APP_NAME));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::APP_NAME));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::MANUFACTURER));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::MANUFACTURER));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::MANUFACTURER));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::MANUFACTURER));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::MODEL_NUMBER));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::MODEL_NUMBER));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::MODEL_NUMBER));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::MODEL_NUMBER));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::SUPPORTED_LANGUAGES));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::SUPPORTED_LANGUAGES));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::SUPPORTED_LANGUAGES));
-# EXPECT_STREQ("as", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::SUPPORTED_LANGUAGES));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::DESCRIPTION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::DESCRIPTION));
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::DESCRIPTION));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::DESCRIPTION));
-
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::DATE_OF_MANUFACTURE));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::DATE_OF_MANUFACTURE));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::DATE_OF_MANUFACTURE));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::DATE_OF_MANUFACTURE));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::SOFTWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::SOFTWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::SOFTWARE_VERSION));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::SOFTWARE_VERSION));
-
-#     EXPECT_TRUE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::AJ_SOFTWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::AJ_SOFTWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::AJ_SOFTWARE_VERSION));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::AJ_SOFTWARE_VERSION));
-
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::HARDWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::HARDWARE_VERSION));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::HARDWARE_VERSION));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::HARDWARE_VERSION));
-
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldrequired(aboutData, AboutData::SUPPORT_URL));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, AboutData::SUPPORT_URL));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, AboutData::SUPPORT_URL));
-# EXPECT_STREQ("s", alljoyn_aboutdata_getfieldsignature(aboutData,
-# AboutData::SUPPORT_URL));
-
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldrequired(aboutData, "Unknown"));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldannounced(aboutData, "Unknown"));
-#     EXPECT_FALSE(alljoyn_aboutdata_isfieldlocalized(aboutData, "Unknown"));
-#     EXPECT_TRUE(NULL == alljoyn_aboutdata_getfieldsignature(aboutData, "Unknown"));
-
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
-
-# TEST(AboutDataTest, DefaultLanguageNotSpecified) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create_empty();
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device Name", NULL);
-#     EXPECT_EQ(ER_ABOUT_DEFAULT_LANGUAGE_NOT_SPECIFIED, status) << "  Actual Status: "
-#                                                                << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application Name", NULL);
-#     EXPECT_EQ(ER_ABOUT_DEFAULT_LANGUAGE_NOT_SPECIFIED, status) << "  Actual Status: "
-#                                                                << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer Name", NULL);
-#     EXPECT_EQ(ER_ABOUT_DEFAULT_LANGUAGE_NOT_SPECIFIED, status) << "  Actual Status: "
-#                                                                << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_setdescription(aboutData,
-#                                               "A description of the application.",
-#                                               NULL);
-#     EXPECT_EQ(ER_ABOUT_DEFAULT_LANGUAGE_NOT_SPECIFIED, status) << "  Actual Status: "
-#                                                                << QCC_StatusText(status);
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
-
 # TEST(AboutDataTest, Constructor) {
 #     QStatus status = ER_FAIL;
 #     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
@@ -1277,6 +1158,20 @@ class TestAboutDataMethods(unittest.TestCase):
 
     def setUp(self):
         self.alljoyn = AllJoyn()
+
+    def test_DefaultLanguageNotSpecified(self):
+        aboutData = AboutData.AboutData.CreateFromEmpty()
+
+        self.assertRaises(QStatusException, aboutData.SetDeviceName, "Device Name", None)
+
+        self.assertRaises(QStatusException, aboutData.SetAppName, "Application Name", None)
+
+        self.assertRaises(QStatusException, aboutData.SetManufacturer, "Manufacturer Name", None)
+
+        self.assertRaises(QStatusException, aboutData.SetDescription, "A description of the application.", None)
+   
+        del aboutData
+
 
     def test_CreateFromXml(self):
         status = QStatus.ER_FAIL

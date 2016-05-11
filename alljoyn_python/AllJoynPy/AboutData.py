@@ -282,6 +282,12 @@ class AboutData(AllJoynObject):
 
     # Wrapper Methods
 
+    @classmethod
+    def CreateFromEmpty(cls):
+        instance = cls()
+        instance.handle = instance._CreateEmpty()
+        return instance
+
     def CreateFromXML(self, aboutDataXml):
         return self._CreateFromXML(self.handle, aboutDataXml)  # const char *
 
