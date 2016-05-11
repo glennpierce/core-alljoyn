@@ -1259,93 +1259,7 @@
 #     alljoyn_aboutdata_destroy(aboutDataInit);
 # }
 
-# TEST(AboutDataTest, caseInsensitiveLanguageTag) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
 
-#     char* language;
-#     status = alljoyn_aboutdata_getdefaultlanguage(aboutData, &language);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("en", language);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "dispositivo", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     size_t num_langs;
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device", "EN");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device", "En");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device", "eN");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "dispositivo", "ES");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "dispositivo", "Es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "dispositivo", "eS");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     num_langs = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
-#     EXPECT_EQ(2u, num_langs);
-
-#     char* deviceName;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "EN");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("Device", deviceName);
-
-#     deviceName = NULL;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "En");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("Device", deviceName);
-
-#     deviceName = NULL;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "eN");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("Device", deviceName);
-
-#     deviceName = NULL;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "ES");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("dispositivo", deviceName);
-
-#     deviceName = NULL;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "Es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("dispositivo", deviceName);
-
-#     deviceName = NULL;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "eS");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("dispositivo", deviceName);
-
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
 
 
 import unittest
@@ -1446,6 +1360,75 @@ class TestAboutDataMethods(unittest.TestCase):
         self.assertEqual("www.example.com", support_url)
 
         del aboutData
+
+
+
+    def test_caseInsensitiveLanguageTag(self):
+        status = QStatus.ER_FAIL
+        aboutData = AboutData.AboutData()
+
+        language = aboutData.GetDefaultLanguage()
+        self.assertEqual("en", language)
+
+        status = aboutData.SetDeviceName("Device", "en");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        status = aboutData.SetDeviceName("dispositivo", "es");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        status = aboutData.SetDeviceName("Device", "EN");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        status = aboutData.SetDeviceName("Device", "eN");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        status = aboutData.SetDeviceName("dispositivo", "ES");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        status = aboutData.SetDeviceName("dispositivo", "Es");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        status = aboutData.SetDeviceName("dispositivo", "es");
+        self.assertEqual(QStatus.ER_OK, status)
+
+        languages = aboutData.GetSupportedLanguages()
+        self.assertEqual(['en', 'es'], languages)
+
+        deviceName = aboutData.GetDeviceName(language="EN")
+        self.assertEqual("Device", deviceName)
+
+        deviceName = aboutData.GetDeviceName(language="En")
+        self.assertEqual("Device", deviceName)
+
+        deviceName = aboutData.GetDeviceName(language="eN")
+        self.assertEqual("Device", deviceName)
+
+        deviceName = aboutData.GetDeviceName(language="ES")
+        self.assertEqual("dispositivo", deviceName)
+
+        deviceName = aboutData.GetDeviceName(language="Es")
+        self.assertEqual("dispositivo", deviceName)
+
+        deviceName = aboutData.GetDeviceName(language="eS")
+        self.assertEqual("dispositivo", deviceName)
+
+        del aboutData
+
 
 
 if __name__ == '__main__':
