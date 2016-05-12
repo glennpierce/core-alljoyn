@@ -16,167 +16,6 @@
 #    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-# TEST(AboutDataTest, Constructor) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     char* language;
-#     status = alljoyn_aboutdata_getdefaultlanguage(aboutData, &language);
-#     ASSERT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("en", language);
-#     char* ajSoftwareVersion;
-#     status = alljoyn_aboutdata_getajsoftwareversion(aboutData, &ajSoftwareVersion);
-#     ASSERT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ(ajn::GetVersion(), ajSoftwareVersion);
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
-
-# TEST(AboutDataTest, SetAppId) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     uint8_t originalAppId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, originalAppId, 16u);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     uint8_t* appId;
-#     size_t num;
-#     status = alljoyn_aboutdata_getappid(aboutData, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     ASSERT_EQ(16u, num);
-#     for (size_t i = 0; i < num; i++) {
-#         EXPECT_EQ(originalAppId[i], appId[i]);
-#     }
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
-
-# TEST(AboutDataTest, SetAppId_using_uuid_string) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-
-#     /* Not a hex digit */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "g00102030405060708090a0b0c0d0e0f");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE, status) << "  Actual Status: "
-#                                                               << QCC_StatusText(status);
-
-#     /* Odd number of characters parsing error */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "00102030405060708090a0b0c0d0e0f");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE, status) << "  Actual Status: "
-#                                                               << QCC_StatusText(status);
-
-#     /* Too few characters */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "0102030405060708090a0b0c0d0e0f");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_APPID_SIZE, status) << "  Actual Status: "
-#                                                                    << QCC_StatusText(status);
-
-#     /* Too many characters */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "000102030405060708090a0b0c0d0e0f10");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_APPID_SIZE, status) << "  Actual Status: "
-#                                                                    << QCC_StatusText(status);
-
-#     /* Not valid uuid parsing error */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "000102030405-060708090A0B-0C0D0E0F10");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE, status) << "  Actual Status: "
-#                                                               << QCC_StatusText(status);
-
-#     /* Not valid uuid parsing error */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "00010203-04050607-0809-0A0B-0C0D0E0F");
-#     EXPECT_EQ(ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE, status) << "  Actual Status: "
-#                                                               << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData,
-#                                                    "000102030405060708090a0b0c0d0e0f");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     uint8_t* appId;
-#     size_t num;
-#     status = alljoyn_aboutdata_getappid(aboutData, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     ASSERT_EQ(16u, num);
-#     for (size_t i = 0; i < num; i++) {
-#         EXPECT_EQ(i, appId[i]);
-#     }
-
-#     alljoyn_aboutdata aboutData2 = alljoyn_aboutdata_create("en");
-
-#     /* Use capital hex digits */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData2,
-#                                                    "000102030405060708090A0B0C0D0E0F");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_getappid(aboutData2, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     ASSERT_EQ(16u, num);
-#     for (size_t i = 0; i < num; i++) {
-#         EXPECT_EQ(i, appId[i]);
-#     }
-
-#     alljoyn_aboutdata aboutData3 = alljoyn_aboutdata_create("en");
-
-#     /* Use capital hex digits UUID as per RFC 4122 */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData3,
-#                                                    "00010203-0405-0607-0809-0A0B0C0D0E0F");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_getappid(aboutData3, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     ASSERT_EQ(16u, num);
-#     for (size_t i = 0; i < num; i++) {
-#         EXPECT_EQ(i, appId[i]);
-#     }
-
-#     alljoyn_aboutdata aboutData4 = alljoyn_aboutdata_create("en");
-
-#     /* Use lowercase hex digits UUID as per RFC 4122 */
-#     status = alljoyn_aboutdata_setappid_fromstring(aboutData4,
-#                                                    "00010203-0405-0607-0809-0a0b0c0d0e0f");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_getappid(aboutData4, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     ASSERT_EQ(16u, num);
-#     for (size_t i = 0; i < num; i++) {
-#         EXPECT_EQ(i, appId[i]);
-#     }
-#     alljoyn_aboutdata_destroy(aboutData);
-#     alljoyn_aboutdata_destroy(aboutData2);
-#     alljoyn_aboutdata_destroy(aboutData3);
-#     alljoyn_aboutdata_destroy(aboutData4);
-# }
-
-# TEST(AboutDataTest, SetDeviceName) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     char* language;
-#     status = alljoyn_aboutdata_getdefaultlanguage(aboutData, &language);
-#     ASSERT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("en", language);
-#     char* ajSoftwareVersion;
-#     status = alljoyn_aboutdata_getajsoftwareversion(aboutData, &ajSoftwareVersion);
-#     ASSERT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ(ajn::GetVersion(), ajSoftwareVersion);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "Device", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     char* deviceName;
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("Device", deviceName);
-
-#     status = alljoyn_aboutdata_setdevicename(aboutData, "dispositivo", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-
-#     status = alljoyn_aboutdata_getdevicename(aboutData, &deviceName, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("dispositivo", deviceName);
-
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
 
 # TEST(AboutDataTest, SetDeviceId) {
 #     QStatus status = ER_FAIL;
@@ -1169,8 +1008,68 @@ class TestAboutDataMethods(unittest.TestCase):
         self.assertRaises(QStatusException, aboutData.SetManufacturer, "Manufacturer Name", None)
 
         self.assertRaises(QStatusException, aboutData.SetDescription, "A description of the application.", None)
-   
+
         del aboutData
+
+
+    def test_SetAppId_using_uuid_string(self):
+        aboutData = AboutData.AboutData(language="en")
+
+        # Not a hex digit
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "g00102030405060708090a0b0c0d0e0f")
+
+        # Odd number of characters parsing error
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "00102030405060708090a0b0c0d0e0f")
+
+        # Too few characters
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "0102030405060708090a0b0c0d0e0f")
+
+        # Too many characters
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "000102030405060708090a0b0c0d0e0f10")
+
+        # Not valid uuid parsing error
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "000102030405-060708090A0B-0C0D0E0F10")
+
+        # Not valid uuid parsing error
+        self.assertRaises(QStatusException, aboutData.SetAppIdFromString, "00010203-04050607-0809-0A0B-0C0D0E0F")
+
+        status = aboutData.SetAppIdFromString("000102030405060708090a0b0c0d0e0f")
+        self.assertEqual(QStatus.ER_OK, status)
+
+        appId = aboutData.GetAppId()
+        self.assertEqual(appId, range(0,16))
+
+        aboutData2 = AboutData.AboutData(language="en")
+
+        status = aboutData2.SetAppIdFromString("000102030405060708090A0B0C0D0E0F")
+        self.assertEqual(QStatus.ER_OK, status)
+
+        appId = aboutData2.GetAppId()
+        self.assertEqual(appId, range(0,16))
+
+        # Use capital hex digits UUID as per RFC 4122
+        aboutData3 = AboutData.AboutData(language="en")
+
+        status = aboutData3.SetAppIdFromString("00010203-0405-0607-0809-0A0B0C0D0E0F")
+        self.assertEqual(QStatus.ER_OK, status)
+
+        appId = aboutData3.GetAppId()
+        self.assertEqual(appId, range(0,16))
+
+
+        # Use lowercase hex digits UUID as per RFC 4122 
+        aboutData4 = AboutData.AboutData(language="en")
+
+        status = aboutData4.SetAppIdFromString("00010203-0405-0607-0809-0a0b0c0d0e0f")
+        self.assertEqual(QStatus.ER_OK, status)
+
+        appId = aboutData4.GetAppId()
+        self.assertEqual(appId, range(0,16))
+
+        del aboutData
+        del aboutData2
+        del aboutData3
+        del aboutData4
 
 
     def test_CreateFromXml(self):
@@ -1323,7 +1222,6 @@ class TestAboutDataMethods(unittest.TestCase):
         self.assertEqual("dispositivo", deviceName)
 
         del aboutData
-
 
 
 if __name__ == '__main__':
