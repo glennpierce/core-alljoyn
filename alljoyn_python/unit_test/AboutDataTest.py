@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # Copyright Glenn Pierce. All rights reserved.
-# 
+#
 #    Permission to use, copy, modify, and/or distribute this software for any
 #    purpose with or without fee is hereby granted, provided that the above
 #    copyright notice and this permission notice appear in all copies.
-# 
+#
 #    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
 #    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
 #    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
@@ -17,87 +17,75 @@
 
 
 
-# TEST(AboutDataTest, SetDeviceId) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setdeviceid(aboutData,
-#                                            "avec-awe1213-1234559xvc123");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     char* deviceId;
-#     status = alljoyn_aboutdata_getdeviceid(aboutData, &deviceId);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_STREQ("avec-awe1213-1234559xvc123", deviceId);
-#     alljoyn_aboutdata_destroy(aboutData);
-# }
 
 # TEST(AboutDataTest, SetAppName) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* appName;
-#     status = alljoyn_aboutdata_getappname(aboutData, &appName, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     appName = aboutData.GetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("Application", appName);
 
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_getappname(aboutData, &appName, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = appName = aboutdata.GetAppName(&appName, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("aplicacion", appName);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetManufacturer) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* manufacturer;
-#     status = alljoyn_aboutdata_getmanufacturer(aboutData, &manufacturer, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getmanufacturer(&manufacturer, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("Manufacturer", manufacturer);
 
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_getmanufacturer(aboutData, &manufacturer, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getmanufacturer(&manufacturer, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("manufactura", manufacturer);
 
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetModelNumber) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "xBnc345");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmodelnumber("xBnc345");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* modelNumber;
-#     status = alljoyn_aboutdata_getmodelnumber(aboutData, &modelNumber);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getmodelnumber(&modelNumber);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("xBnc345", modelNumber);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetSupportedLanguage) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     size_t numLanguages =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
+#         languages = aboutData.GetSupportedLanguages()(NULL, 0);
 #     const char** languages = new const char*[numLanguages];
 
 #     size_t numRetLang =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutData,
+#         languages = aboutData.GetSupportedLanguages()(aboutData,
 #                                                 languages,
 #                                                 numLanguages);
 #     EXPECT_EQ(numLanguages, numRetLang);
@@ -107,14 +95,14 @@
 #     delete [] languages;
 #     languages = NULL;
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     numLanguages = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
+#     numLanguages = languages = aboutData.GetSupportedLanguages()(NULL, 0);
 #     languages = new const char*[numLanguages];
 
 #     numRetLang =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutData,
+#         languages = aboutData.GetSupportedLanguages()(aboutData,
 #                                                 languages,
 #                                                 numLanguages);
 #     EXPECT_EQ(numLanguages, numRetLang);
@@ -123,312 +111,312 @@
 #     EXPECT_STREQ("es", languages[1]);
 #     delete [] languages;
 #     languages = NULL;
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetSupportedLanguage_Duplicate) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     /* Duplicate language already added from constructor */
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetSupportedLanguages(language=)"en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     /* Duplicate language already added, error status should be generated */
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     /*
 #      * Even though "en" and "es" languages have been added multiple times only
 #      * two languages should be reported in the list of SupportedLanguages.
 #      */
-#     size_t numRetLang = alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
+#     size_t numRetLang = languages = aboutData.GetSupportedLanguages()(NULL, 0);
 #     EXPECT_EQ(2u, numRetLang);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, DISABLED_SetSupportedLanguage_Invalid_Tag) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     /* Invalid language tag not defined in RFC5646 */
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "abc");
+#     status = aboutData.SetSupportedLanguages(language=)"abc");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "232");
+#     status = aboutData.SetSupportedLanguages(language=)"232");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
 #     /* Invalid subtag not defined in RFC5646 */
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "en-t324");
+#     status = aboutData.SetSupportedLanguages(language=)"en-t324");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "zh-gfjk");
+#     status = aboutData.SetSupportedLanguages(language=)"zh-gfjk");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
 #     size_t numRetLang =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
+#         languages = aboutData.GetSupportedLanguages()(NULL, 0);
 #     EXPECT_EQ(1u, numRetLang);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, GetSupportedLanguages) {
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     aboutData = AboutData.AboutData(language="en")
 
 #     size_t numLanguages;
 #     numLanguages =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutData, NULL, 0);
+#         languages = aboutData.GetSupportedLanguages()(NULL, 0);
 #     EXPECT_EQ(1u, numLanguages);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetDescription) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* description;
-#     status = alljoyn_aboutdata_getdescription(aboutData, &description, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getdescription(&description, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("A poetic description of this application", description);
 
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_getdescription(aboutData, &description, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getdescription(&description, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("Una descripcion poetica de esta aplicacion", description);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetDateOfManufacture) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setdateofmanufacture(aboutData, "2014-01-20");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.setdateofmanufacture("2014-01-20");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* dateOfManufacture;
-#     status = alljoyn_aboutdata_getdateofmanufacture(aboutData, &dateOfManufacture);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getdateofmanufacture(&dateOfManufacture);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("2014-01-20", dateOfManufacture);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, DISABLED_SetDateOfManufacture_Negative) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     /* Invalid date should fail */
-#     status = alljoyn_aboutdata_setdateofmanufacture(aboutData, "2014-41-20");
+#     status = aboutData.setdateofmanufacture("2014-41-20");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     status = alljoyn_aboutdata_setdateofmanufacture(aboutData, "201a-02-20");
+#     status = aboutData.setdateofmanufacture("201a-02-20");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     status = alljoyn_aboutdata_setdateofmanufacture(aboutData, "2013-02-29");
+#     status = aboutData.setdateofmanufacture("2013-02-29");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-#     status = alljoyn_aboutdata_setdateofmanufacture(aboutData, "04/31/2014");
+#     status = aboutData.setdateofmanufacture("04/31/2014");
 #     EXPECT_NE(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetSoftwareVersion) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* softwareVersion;
-#     status = alljoyn_aboutdata_getsoftwareversion(aboutData, &softwareVersion);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getsoftwareversion(&softwareVersion);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("0.1.2", softwareVersion);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetHardwareVersion) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_sethardwareversion(aboutData, "3.2.1");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.sethardwareversion("3.2.1");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* hardwareVersion;
-#     status = alljoyn_aboutdata_gethardwareversion(aboutData, &hardwareVersion);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.gethardwareversion(&hardwareVersion);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("3.2.1", hardwareVersion);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetSupportUrl) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_setsupporturl(aboutData, "www.example.com");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
+#     status = aboutData.setsupporturl("www.example.com");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* supportUrl;
-#     status = alljoyn_aboutdata_getsupporturl(aboutData, &supportUrl);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getsupporturl(&supportUrl);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("www.example.com", supportUrl);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, IsValid) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "es"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
-#     alljoyn_aboutdata_destroy(aboutData);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, IsValid_Negative) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     /* DefaultLanguage and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     status = aboutData.SetSupportedLanguages(language=)"en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* DeviceId and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* AppName and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* Manufacturer and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* ModelNumber and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /*Description and other required fields are missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* SoftwareVersion missing */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     /* Now all required fields are set for English */
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* Missing AppName/Manufacture/Description */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "es"));
 
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #      Missing Manufacture/Description
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "es"));
 
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     /* Missing Description */
-#     EXPECT_FALSE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     EXPECT_FALSE(aboutdata.Isvalid(, "es"));
 
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
-#     alljoyn_aboutdata_destroy(aboutData);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, GetAboutData) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
 
 #     alljoyn_msgarg aboutArg = alljoyn_msgarg_create();
-#     status = alljoyn_aboutdata_getaboutdata(aboutData, aboutArg, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getaboutdata(aboutArg, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     alljoyn_msgarg args;
 
 #     status = alljoyn_msgarg_getdictelement(aboutArg, "{sv}",
@@ -472,48 +460,48 @@
 #     EXPECT_STREQ("123456", modelNumber);
 
 #     alljoyn_msgarg_destroy(aboutArg);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, GetMsgArg_es_language) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
 
 #     alljoyn_msgarg aboutArg = alljoyn_msgarg_create();
 #     alljoyn_msgarg args;
-#     status = alljoyn_aboutdata_getaboutdata(aboutData, aboutArg, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getaboutdata(aboutArg, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg_getdictelement(aboutArg, "{sv}",
 #                                   AboutData::APP_ID, &args);
@@ -555,14 +543,14 @@
 #     alljoyn_msgarg_get(args, "s", &modelNumber);
 #     EXPECT_STREQ("123456", modelNumber);
 #     alljoyn_msgarg_destroy(aboutArg);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # void VerifyAppName(alljoyn_aboutdata aboutData, const char* language, const char* expectedAppName)
 # {
 #     alljoyn_msgarg aboutArg = alljoyn_msgarg_create();
-#     QStatus status = alljoyn_aboutdata_getaboutdata(aboutData, aboutArg, language);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     QStatus status = aboutData.getaboutdata(aboutArg, language);
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg args;
 #     alljoyn_msgarg_getdictelement(aboutArg, "{sv}", AboutData::APP_NAME, &args);
@@ -574,111 +562,111 @@
 # }
 
 # TEST(AboutDataTest, GetMsgArg_best_language) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setappname(aboutData, "en appName", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "en manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData, "en description", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     status = aaboutdata.SetAppname("en appName", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("en manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription("en description", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "de-CH");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "de-CH appName", "de-CH");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "de-CH manufacturer", "de-CH");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData, "de-CH description", "de-CH");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "de-CH"));
+#     status = aboutData.SetSupportedLanguages(language=)"de-CH");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("de-CH appName", "de-CH");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("de-CH manufacturer", "de-CH");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription("de-CH description", "de-CH");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "de-CH"));
 
 #     // Test requesting languages that resolve to the language that happens
 #     // to be the default language.
-#     VerifyAppName(aboutData, "EN", "en appName");
-#     VerifyAppName(aboutData, "EN-US", "en appName");
-#     VerifyAppName(aboutData, "en-a-bbb-x-a-ccc", "en appName");
+#     VerifyAppName("EN", "en appName");
+#     VerifyAppName("EN-US", "en appName");
+#     VerifyAppName("en-a-bbb-x-a-ccc", "en appName");
 
 #     // Test requesting languages that resolve to a language other than
 #     // the default language.
-#     VerifyAppName(aboutData, "DE-CH", "de-CH appName");
-#     VerifyAppName(aboutData, "de-ch-1901", "de-CH appName");
+#     VerifyAppName("DE-CH", "de-CH appName");
+#     VerifyAppName("de-ch-1901", "de-CH appName");
 
 #     // Test requesting languages that resolve to nothing and so use the
 #     // default language.
-#     VerifyAppName(aboutData, "de", "en appName");
-#     VerifyAppName(aboutData, "fr", "en appName");
+#     VerifyAppName("de", "en appName");
+#     VerifyAppName("fr", "en appName");
 
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, InitUsingMsgArgBadSignature) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 #     alljoyn_msgarg notADictionary =
 #         alljoyn_msgarg_create_and_set("s", "incorrect type.");
 
-#     status = alljoyn_aboutdata_createfrommsgarg(aboutData, notADictionary, "en");
+#     status = aboutData.createfrommsgarg(notADictionary, "en");
 #     EXPECT_EQ(ER_BUS_SIGNATURE_MISMATCH, status) << "  Actual Status: "
 #                                                  << QCC_StatusText(status);
 
 #     alljoyn_msgarg_destroy(notADictionary);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, UTF8_test) {
 #     char str[] = "привет";
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
-#     status = alljoyn_aboutdata_setappname(aboutData, str, "ru");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aaboutdata.SetAppname(str, "ru");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char* esOut;
-#     status = alljoyn_aboutdata_getappname(aboutData, &esOut, "ru");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = appName = aboutdata.GetAppName(&esOut, "ru");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ(str, esOut);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, GetAnnouncedAboutData) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
 #     alljoyn_msgarg announceArg = alljoyn_msgarg_create();
-#     status = alljoyn_aboutdata_getannouncedaboutdata(aboutData, announceArg);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getannouncedaboutdata(announceArg);
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg args;
 #     status = alljoyn_msgarg_getdictelement(announceArg, "{sv}",
@@ -722,101 +710,101 @@
 #     EXPECT_STREQ("123456", modelNumber);
 
 #     alljoyn_msgarg_destroy(announceArg);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, SetOEMSpecificField) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 #     alljoyn_msgarg arg = alljoyn_msgarg_create();
 
 #     status = alljoyn_msgarg_set(arg, "s", "888-555-1234");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     status = alljoyn_msgarg_set(arg, "s", "800-555-4321");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg value;
-#     status = alljoyn_aboutdata_getfield(aboutData, "SupportNumber", &value, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getfield("SupportNumber", &value, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char buf[2];
 #     alljoyn_msgarg_signature(value, buf, 2);
 #     EXPECT_STREQ("s", buf);
 #     const char* supportNumber;
 #     status = alljoyn_msgarg_get(value, "s", &supportNumber);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("888-555-1234", supportNumber);
 
-#     status = alljoyn_aboutdata_getfield(aboutData, "SupportNumber", &value, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getfield("SupportNumber", &value, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg_signature(value, buf, 2);
 #     EXPECT_STREQ("s", buf);
 #     status = alljoyn_msgarg_get(value, "s", &supportNumber);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("800-555-4321", supportNumber);
 
 #     alljoyn_msgarg_destroy(arg);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, GetMsgArgWithOEMSpecificField) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t appId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, appId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(appId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
 
 #     alljoyn_msgarg arg = alljoyn_msgarg_create();
 #     status = alljoyn_msgarg_set(arg, "s", "888-555-1234");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     status = alljoyn_msgarg_set(arg, "s", "800-555-4321");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg aboutArg = alljoyn_msgarg_create();
-#     status = alljoyn_aboutdata_getaboutdata(aboutData, aboutArg, "en");
+#     status = aboutData.getaboutdata(aboutArg, "en");
 
 #     alljoyn_msgarg args;
 #     status = alljoyn_msgarg_getdictelement(aboutArg, "{sv}",
@@ -865,118 +853,118 @@
 #     alljoyn_msgarg_get(args, "s", &supportNumber);
 #     EXPECT_STREQ("888-555-1234", supportNumber);
 #     alljoyn_msgarg_destroy(aboutArg);
-#     alljoyn_aboutdata_destroy(aboutData);
+#     del aboutData
 # }
 
 # TEST(AboutDataTest, InitUsingMsgArg) {
-#     QStatus status = ER_FAIL;
-#     alljoyn_aboutdata aboutData = alljoyn_aboutdata_create("en");
+#     status = QStatus.ER_FAIL
+#     aboutData = AboutData.AboutData(language="en")
 
 #     uint8_t originalAppId[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-#     status = alljoyn_aboutdata_setappid(aboutData, originalAppId, 16);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdeviceid(aboutData, "fakeID");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "Application", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "Manufacturer", "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmodelnumber(aboutData, "123456");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.setappid(originalAppId, 16);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutdata.SetDeviceId(, "fakeID");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.SetAppName("Application", language="en")
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("Manufacturer", "en");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmodelnumber("123456");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "A poetic description of this application",
 #                                               "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setsoftwareversion(aboutData, "0.1.2");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "en"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setsoftwareversion("0.1.2");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "en"));
 
-#     status = alljoyn_aboutdata_setsupportedlanguage(aboutData, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setappname(aboutData, "aplicacion", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setmanufacturer(aboutData, "manufactura", "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     status = alljoyn_aboutdata_setdescription(aboutData,
+#     status = aboutData.SetSupportedLanguages(language=)"es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aaboutdata.SetAppname("aplicacion", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setmanufacturer("manufactura", "es");
+#     self.assertEqual(QStatus.ER_OK, status)
+#     status = aboutData.setdescription(aboutData,
 #                                               "Una descripcion poetica de esta aplicacion",
 #                                               "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
-#     EXPECT_TRUE(alljoyn_aboutdata_isvalid(aboutData, "es"));
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_TRUE(aboutdata.Isvalid(, "es"));
 
 #     alljoyn_msgarg arg = alljoyn_msgarg_create();
 
 #     status = alljoyn_msgarg_set(arg, "s", "888-555-1234");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     status = alljoyn_msgarg_set(arg, "s", "800-555-4321");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 
-#     status = alljoyn_aboutdata_setfield(aboutData, "SupportNumber", arg, "es");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.setfield("SupportNumber", arg, "es");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     alljoyn_msgarg aboutArg = alljoyn_msgarg_create();
-#     status = alljoyn_aboutdata_getaboutdata(aboutData, aboutArg, "en");
+#     status = aboutData.getaboutdata(aboutArg, "en");
 
-#     alljoyn_aboutdata aboutDataInit = alljoyn_aboutdata_create("en");
-#     status = alljoyn_aboutdata_createfrommsgarg(aboutDataInit, aboutArg, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     alljoyn_aboutdata aboutDataInit = aboutData.create("en");
+#     status = aboutData.createfrommsgarg(aboutDataInit, aboutArg, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     uint8_t* appId;
 #     size_t num;
-#     status = alljoyn_aboutdata_getappid(aboutDataInit, &appId, &num);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getappid(aboutDataInit, &appId, &num);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     ASSERT_EQ(16u, num);
 #     for (size_t i = 0; i < num; i++) {
 #         EXPECT_EQ(originalAppId[i], appId[i]);
 #     }
 
 #     char* deviceId;
-#     status = alljoyn_aboutdata_getdeviceid(aboutDataInit, &deviceId);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getdeviceid(aboutDataInit, &deviceId);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("fakeID", deviceId);
 
 #     char* appName;
-#     status = alljoyn_aboutdata_getappname(aboutDataInit, &appName, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getappname(aboutDataInit, &appName, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("Application", appName);
 
 #     char* manufacturer;
-#     status = alljoyn_aboutdata_getmanufacturer(aboutDataInit, &manufacturer, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getmanufacturer(aboutDataInit, &manufacturer, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("Manufacturer", manufacturer);
 
 #     char* modelNumber;
-#     status = alljoyn_aboutdata_getmodelnumber(aboutDataInit, &modelNumber);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getmodelnumber(aboutDataInit, &modelNumber);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("123456", modelNumber);
 
 #     char* description;
-#     status = alljoyn_aboutdata_getdescription(aboutDataInit, &description, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     status = aboutData.getdescription(aboutDataInit, &description, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("A poetic description of this application", description);
 
 #     alljoyn_msgarg value;
-#     alljoyn_aboutdata_getfield(aboutDataInit, "SupportNumber", &value, "en");
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     aboutData.getfield(aboutDataInit, "SupportNumber", &value, "en");
+#     self.assertEqual(QStatus.ER_OK, status)
 
 #     char buf[2];
 #     alljoyn_msgarg_signature(value, buf, 2);
 #     EXPECT_STREQ("s", buf);
 #     const char* supportNumber;
 #     status = alljoyn_msgarg_get(value, "s", &supportNumber);
-#     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
+#     self.assertEqual(QStatus.ER_OK, status)
 #     EXPECT_STREQ("888-555-1234", supportNumber);
 
 #     size_t number_languages =
-#         alljoyn_aboutdata_getsupportedlanguages(aboutDataInit, NULL, 0);
+#         languages = aboutData.GetSupportedLanguages()(aboutDataInit, NULL, 0);
 #     EXPECT_EQ(2u, number_languages);
 #     /* TODO complete the test for language and other required */
 #     alljoyn_msgarg_destroy(aboutArg);
-#     alljoyn_aboutdata_destroy(aboutData);
-#     alljoyn_aboutdata_destroy(aboutDataInit);
+#     del aboutData
+#     aboutData.destroy(aboutDataInit);
 # }
 
 
@@ -997,6 +985,21 @@ class TestAboutDataMethods(unittest.TestCase):
 
     def setUp(self):
         self.alljoyn = AllJoyn()
+
+
+    def test_SetDeviceId(self):
+        status = QStatus.ER_FAIL
+        aboutData = AboutData.AboutData(language="en")
+        status = aboutData.SetDeviceId("avec-awe1213-1234559xvc123");
+        self.assertEqual(QStatus.ER_OK, status)
+
+#     char* deviceId;
+#     status = aboutData.getdeviceid(&deviceId);
+#     self.assertEqual(QStatus.ER_OK, status)
+#     EXPECT_STREQ("avec-awe1213-1234559xvc123", deviceId);
+#     del aboutData
+# }
+
 
     def test_DefaultLanguageNotSpecified(self):
         aboutData = AboutData.AboutData.CreateFromEmpty()
@@ -1154,8 +1157,6 @@ class TestAboutDataMethods(unittest.TestCase):
         self.assertEqual("www.example.com", support_url)
 
         del aboutData
-
-
 
     def test_caseInsensitiveLanguageTag(self):
         status = QStatus.ER_FAIL
