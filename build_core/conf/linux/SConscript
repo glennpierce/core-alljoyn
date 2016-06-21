@@ -36,7 +36,6 @@ env.Append(CPPDEFINES = ['QCC_OS_LINUX'])
 env.Append(CPPDEFINES = ['_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC'])
 
 env.Append(CFLAGS = ['-Wall',
-                     '-Werror',
                      '-pipe',
                      '-std=c99',
                      '-fno-strict-aliasing',
@@ -48,7 +47,6 @@ env.Append(CFLAGS = ['-Wall',
                      '-Wunused-parameter'])
 
 env.Append(CXXFLAGS = ['-Wall',
-                       '-Werror',
                        '-pipe',
                        '-fno-exceptions',
                        '-fno-strict-aliasing',
