@@ -139,23 +139,6 @@ def tracks():
     return jsonify({'items': tracks})  # g.lib.items()
 
 
-#@app.route('/albums/')
-#def tracks():
-#    albums = []
-#    for item in g.lib.albums():
-#        albums.append(
-#                {
-#                   'id': item.id,
-#                   'title': item.title,
-#                   'path': item.path,
-#                   'artist': item.artist,
-#                   'album': item.album
-#                }
-#            )
-#
-#    return jsonify({'albums': albums})  # g.lib.items()
-
-
 @app.route('/showtracks.html')
 def showtracks():
     return flask.render_template('showtracks.html')
