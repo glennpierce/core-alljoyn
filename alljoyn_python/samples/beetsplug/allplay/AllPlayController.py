@@ -600,7 +600,7 @@ class AllPlayController(object):
     def __init__(self):
         super(AllPlayController, self).__init__()
         self.alljoyn = AllJoyn()
-        self.alljoyn.RouterInit()
+        #alljoyn.RouterInit() 
         self.player = None
         self.queue = []
 
@@ -664,7 +664,7 @@ class AllPlayController(object):
         print "Shutting Down"
         self.g_bus.Stop()
         self.g_bus.Join()
-        self.alljoyn.RouterShutdown() 
+        #alljoyn.RouterShutdown() 
 
     def CreateZone(self, device_ids):
 

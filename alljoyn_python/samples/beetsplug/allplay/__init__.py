@@ -19,21 +19,12 @@ from __future__ import division, absolute_import, print_function
 import sys
 import os
 import os.path
-import logging
 from beets.plugins import BeetsPlugin
 from beets import ui
 from beets import util
 import beets.library
 import flask
 from flask import g, jsonify, request
-from flask.ext.cors import CORS, cross_origin
-#from flask.ext import restful
-#from flask.ext.restful import Api
-
-#from flask.ext.cors import CORS
-#from flask.ext.restful import Resource, Api, reqparse
-
-
 from werkzeug.routing import BaseConverter, PathConverter
 import os
 import json
@@ -43,48 +34,17 @@ allplayerController = AllPlayController()
 
 app = flask.Flask(__name__)
 
-#app.config['CORS_HEADERS'] = 'Content-Type'
-#cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-CORS(app)
-
-#api = Api(app)
-
-#app = restful.Api(app)
-
-#from flask import Flask
-#from flask.ext.cors import CORS
-#app = Flask(__name__)
-
-logging.basicConfig(level=logging.INFO)
-
-# To enable logging for flask-cors,
-logging.getLogger('flask_cors').level = logging.DEBUG
-
-#CORS(app, headers=['Content-Type'])
-
-
-#@app.after_request
-#def after_request(response):
-#  print("here")
-#  response.headers.add('Access-Control-Allow-Origin', '*')
-#  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-#  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-#  return response
-
-
-#def add_cors_header(response):
-#    print("ccccccccccccccccccccccc")
-#    response.headers['Access-Control-Allow-Origin'] = '*'
-#    response.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type'
-#    response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
-#    return response
-
-#app.after_request(add_cors_header)
 
 @app.before_request
 def before_request():
     g.lib = app.config['lib']
+
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  return response
 
 @app.route('/get_devices', methods=['GET'])
 def get_devices():
@@ -162,8 +122,6 @@ def update():
     return jsonify({'return': 'ok'})
 
 
-#@cross_origin() # allow all origins all methods.
-
 @app.route('/tracks/')
 def tracks():
     tracks = []
@@ -181,19 +139,21 @@ def tracks():
     return jsonify({'items': tracks})  # g.lib.items()
 
 
-@app.route('/albums/')
-def albums():
-    albums = []
-    for item in g.lib.albums():
-        albums.append(
-                {
-                   'id': item.id,
-                   'album': item.album,
-                   'artist': item.albumartist
-                }
-            )
-
-    return jsonify({'albums': albums})  # g.lib.items()
+#@app.route('/albums/')
+#def tracks():
+#    albums = []
+#    for item in g.lib.albums():
+#        albums.append(
+#                {
+#                   'id': item.id,
+#                   'title': item.title,
+#                   'path': item.path,
+#                   'artist': item.artist,
+#                   'album': item.album
+#                }
+#            )
+#
+#    return jsonify({'albums': albums})  # g.lib.items()
 
 
 @app.route('/showtracks.html')
